@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>Fullscreen Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/static/login/css/reset.css">
+        <link rel="stylesheet" href="/static/login/css/supersized.css">
+        <link rel="stylesheet" href="/static/login/css/style.css">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <div class="page-container">
+            <h1>管理员登录</h1>
+            <form id="form"  method="post">
+                <input type="text" name="username" id="username" class="username" placeholder="账号">
+                <input type="password" name="password" id="password" class="password" placeholder="密码">
+                </form>
+                <button id="sub" click="keylogin()" type="submit">登录</button>
+                <div class="error"><span>+</span></div>
+
+            
+            <div class="connect">
+                <p>Or connect with:</p>
+                <p>
+                    <a class="facebook" href=""></a>
+                    <a class="twitter" href=""></a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Javascript -->
+        <script src="/static/login/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/login/js/supersized.3.2.7.min.js"></script>
+        <script src="/static/login/js/supersized-init.js"></script>
+        <script src="/static/login/js/scripts.js"></script>
+
+    </body>
+	<script src="/static/layui/layui.all.js"></script>
+	<script>
+        $(document).keydown(function (event) {
+            
+            if(window !=top){
+                top.location.href=location.href;
+            }
+            if (event.keyCode == 13) {
+                login();
+            }
+            });
+       
+		$('#sub').click(function(){
+			login();
+		});
+        function login(){
+            var url = '/liuc/login/login';
+            
+            $.post(url,{'username':$('#username').val(),'password':$('#password').val()},function(data){
+                    layer.msg(data.text);
+                    if (data.code == 20) {
+                        window.location.href = "/liuc/admin/index";
+                    }
+            },'json');
+        }
+	</script>
+
+</html>
+

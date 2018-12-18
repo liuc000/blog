@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - Bootstrap Table</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/static/h+/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/static/h+/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/static/h+/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/static/h+/css/animate.css" rel="stylesheet">
+    <link href="/static/h+/css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+        .img{
+            width: 200px;
+            height:100px;
+        }
+    </style>
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+
+        <!-- Panel Other -->
+        <div class="ibox float-e-margins">
+          
+            <div class="ibox-content">
+                <div class="row row-lg">
+                 
+                     <div class="col-sm-12">
+                        <!-- Example Events -->
+                        <div class="example-wrap">
+                            <div class="example">
+                               
+                                <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
+                                    <button type="button" class="btn btn-outline btn-default" onclick="add()">
+                                        <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default">
+                                        <i class="glyphicon glyphicon-heart" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-default">
+                                        <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <table id="table" >
+                                  
+                                </table>
+                            </div>
+                        </div>
+                        <!-- End Example Events -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel Other -->
+    </div>
+
+    <!-- 全局js -->
+    <script src="/static/h+/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/static/h+/js/bootstrap.min.js?v=3.3.6"></script>
+
+    <!-- 自定义js -->
+    <script src="/static/h+/js/content.js?v=1.0.0"></script>
+
+
+    <!-- Bootstrap table -->
+    <script src="/static/h+/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="/static/h+/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="/static/h+/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- <script src="/static/layui/layui.js"></script> -->
+    <script src="/static/layui/layui.all.js"></script>
+
+    <!-- Peity -->
+    <script src="/static/h+/js/demo/bootstrap-table-demo.js"></script>
+    <script>
+        $('#table').bootstrapTable({
+            url:"{:url('blog/list_table_data')}",    //发送地址
+            method:'post',  //请求方式
+            undefinedText:'<font color="red">暂无</font>',  //为空值默认
+            striped: true,  //隔行变色
+            sortOrder:'asc',    //排序方式
+            columns:[{
+                field:'id',
+                title:'ID',
+                sortable:true
+            },{
+                field:'title',
+                title:'标题'
+            },{
+                field:'blog_type',
+                title:'分类'
+            },{
+                field:'img',
+                title:'图片',
+                formatter:function(v,r,i){
+                    if (v) {
+                        var btn = "<img src="+v+" class='img'>";
+                    }else{
+                        var btn = "<font color='red'>暂无</font>";
+                    }
+                    return btn;
+                }
+            },{
+                field:'create_time',
+                title:'创建时间',
+                sortable:true,
+                formatter:function(v,r,i){
+                    return changeDateFormat(v);
+                }
+            },{
+                field:'update_time',
+                title:'更新时间',
+                sortable:true,
+                formatter:function(v,r,i){
+                    return changeDateFormat(v);
+                }
+            },{
+                title:'设置',
+                formatter:function(v,r,i){
+                    var btn = '<button type="button" class="btn btn-outline btn-warning btn-xs" onclick="editor('+r.id+')">修改</button>&nbsp;&nbsp;'+
+                                '<button type="button" class="btn btn-outline btn-danger btn-xs" onclick="del('+r.id+')">删除</button>';
+                    return btn;
+                }
+            }],
+            dataType:'json',    //
+            queryParams:function(params){
+                return {
+                    limit:params.limit, //分页
+                    offset:params.offset,    //页数
+                    search:params.search,   //搜索
+                    sort:params.sort,   //分类
+                    order:params.order,  //排序
+                }
+            },
+            pagination:true,    //底部展示分页条
+            sidePagination:'server',    //服务器分页
+            pageNumber:1,   //展示第一页数据
+            pageSize:25,    //每页10条数据
+            pageList:[25,50,100],    //分页步进值
+            search:true,    //启用搜索
+            showRefresh:true,   //刷新按钮
+            showPaginationSwitch:true,  //分页按钮
+            idField:'id',
+
+        });
+
+        function add(){
+            //添加
+            parent.layer.open({
+              type: 2,
+              title: '博文添加',
+              shadeClose: true,
+              shade: 0.8,
+              area: ['80%', '90%'],
+              content: '{:url("Blog/add_blog")}',
+              end:function(){
+                $('#table').bootstrapTable('refresh');
+              }
+            });
+        }
+        function editor(id){
+            //修改
+            parent.layer.open({
+              type: 2,
+              title: '博文修改',
+              shadeClose: true,
+              shade: 0.8,
+              area: ['80%', '90%'],
+              content: '/liuc/Blog/editor_blog?id='+id,
+              end:function(){
+                $('#table').bootstrapTable('refresh');
+              }
+            });
+        }
+        function del(id){
+            layer.confirm('确定删除?', {
+              btn: ['确定','取消'] //按钮
+            }, function(){
+                var url = '{:url("blog/del")}';
+                $.post(url,{'id':id},function(res){
+                    if (res.code == 10) {
+                    layer.msg(res.text);
+                    }
+                    $('#table').bootstrapTable('refresh');
+                },'json')
+              layer.msg('的确很重要', {icon: 1});
+            }, function(){
+               
+            });
+        }
+        //时间戳转换日期
+        function changeDateFormat(sj) {
+                var now = new Date(sj*1000);
+                var   year=now.getFullYear();    
+                var   month=now.getMonth()+1;    
+                var   date=now.getDate();    
+                var   hour=now.getHours();    
+                var   minute=now.getMinutes();    
+                var   second=now.getSeconds();    
+                return   year+"-"+month+"-"+date+"   "+hour+":"+minute+":"+second;  
+        }
+
+    </script>
+
+</body>
+
+</html>

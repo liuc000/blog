@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 基本表单</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/static/h+/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/static/h+/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/static/h+/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/static/h+/css/animate.css" rel="stylesheet">
+    <link href="/static/h+/css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+       <input type="hidden" id="id" value="{$data.id}">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>填写博客内容</h5>
+                       
+                    </div>
+                    <div class="ibox-content">
+
+                        <!-- <form method="post" class="form-horizontal"> -->
+                        <!-- 将form换做div 用ajax提交 -->
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">标题</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" id="title" placeholder="你一定可以写出一篇好的文章 !" class="form-control" value="{$data.title ? $data.title : ''}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                          
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">分类</label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control m-b" id="b_id" name="account">
+                                    {volist name="type" id="vo"}
+                                        <option value="{$vo.b_id}" {eq name="$data.b_id" value="$vo.b_id" }selected{/eq} >{$vo.blog_type}</option>
+                                    {/volist}
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">封面</label>
+
+                                <div class="col-sm-10">
+                                    <input type="img" id="img" placeholder="图片网络路径 !" class="form-control" value="{$data.img ? $data.img : ''}">
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">导读</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="presentation" rows="3" placeholder="请输入导读部分">{$data.presentation ? $data.presentation : ''}</textarea>
+                            </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label">博文</label>
+                             <div class="col-sm-10">
+                               <script id="container" name="content" type="text/plain" style="height:400px">{$data.content ? $data.content : ''}</script>
+                               </div>
+                            </div>
+                        <div class="hr-line-dashed"></div>
+
+            
+
+
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit" id="submit">保存内容</button>
+                                    <!-- <button class="btn btn-white" type="submit">取消</button> -->
+                                </div>
+                            </div>
+
+</div>
+                        <!-- </form> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-form" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6 b-r">
+                            <h3 class="m-t-none m-b">登录</h3>
+
+                            <p>欢迎登录本站(⊙o⊙)</p>
+
+                            <form role="form">
+                                <div class="form-group">
+                                    <label>用户名：</label>
+                                    <input type="email" placeholder="请输入用户名" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>密码：</label>
+                                    <input type="password" placeholder="请输入密码" class="form-control">
+                                </div>
+                                <div>
+                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>登录</strong>
+                                    </button>
+                                    <label>
+                                        <input type="checkbox" class="i-checks">自动登录</label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4>还不是会员？</h4>
+                            <p>您可以注册一个账户</p>
+                            <p class="text-center">
+                                <a href="form_basic.html"><i class="fa fa-sign-in big-icon"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="/static/h+/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/static/h+/js/bootstrap.min.js?v=3.3.6"></script>
+
+    <!-- 自定义js -->
+    <script src="/static/h+/js/content.js?v=1.0.0"></script>
+
+    <!-- iCheck -->
+    <script src="/static/h+/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="/static/layui/layui.all.js"></script>
+
+
+    <!-- ueditor编辑器 -->
+     <!-- 配置文件 -->
+    <script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/static/ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+  
+    <script>
+     var ue = UE.getEditor('container');
+     ue.ready(function() {
+            //设置编辑器的内容
+            // ue.setContent('hello');
+            //获取html内容，返回: <p>hello</p>
+            var html = ue.getContent();
+            //获取纯文本内容，返回: hello
+            var txt = ue.getContentTxt();
+        });
+
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+            $('#submit').click(function(){
+                var content = ue.getContent();
+                var url = "/liuc/blog/editor_blog";
+                $.post(url,{'id':$('#id').val(),'title':$('#title').val(),'b_id':$('#b_id').val(),'presentation':$('#presentation').val(),'img':$('#img').val(),'content':content},function(res){
+                    if (res.code === '20') {
+                        layer.msg(res.text);
+                        setTimeout(function(){
+                            window.location.reload();
+                        },800)
+                        return;
+                    }
+                    layer.msg(res.text);
+                },'json');
+            });
+        });
+    </script>
+
+ 
+</body>
+
+</html>

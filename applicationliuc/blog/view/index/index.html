@@ -1,0 +1,201 @@
+{layout name="layout" /}
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img" style="background-image: url(/static/blog/img/bg-img/breadcumb.jpg);">
+        <div class="bradcumbContent">
+            <h2>我的博客</h2>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Blog Area Start ##### -->
+    <div class="blog-area mt-50 section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    <div class="academy-blog-posts">
+                        <div class="row">
+                        {volist name="blogData" id="vo"}
+                           <div class="col-12" >
+                                <div class="single-blog-post mb-50 wow fadeInUp" data-wow-delay="300ms">
+                                    <a href="/blog/blog/Content?id={$vo.id}" class="post-title">{$vo.title}</a>
+                                    <div class="post-meta">
+                                        <p>By <a href="#">{$vo.blog_type}</a> | <a href="#"><?php echo date('Y-m-d H:i:s',$vo['create_time'])?></a></p>
+                                    </div>
+                                    <p>{$vo.presentation}</p>
+                                    <a href="/blog/blog/Content?id={$vo.id}" class="btn academy-btn btn-sm mt-15">点击查看</a>
+                                </div>
+                            </div>
+                        {/volist} 
+                        </div>
+                    </div>
+                    <!-- Pagination Area Start -->
+        
+                    <div class="academy-pagination-area wow fadeInUp" data-wow-delay="400ms">
+                    <div id="pagination" class="pagination"></div>
+
+                       <!--  <nav>
+                        <ul id="page" class="pagination">
+
+                        </ul>
+                            <ul class="pagination">
+
+                                <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                                <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                <li class="page-item"><a class="page-link" href="#">03</a></li>
+                            </ul>
+                        </nav> -->
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="academy-blog-sidebar">
+                        <!-- Blog Post Widget -->
+                        <div class="blog-post-search-widget mb-30">
+                            <form action="#" method="post">
+                                <input type="search" name="search" id="Search" placeholder="Search">
+                                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+
+                        <!-- Blog Post Catagories -->
+                        <div class="blog-post-categories mb-30">
+                            <h5>Categories</h5>
+                            <ul>
+                                <li><a href="#">Courses</a></li>
+                                <li><a href="#">Education</a></li>
+                                <li><a href="#">Teachers</a></li>
+                                <li><a href="#">Uncategorized</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Latest Blog Posts Area -->
+                        <div class="latest-blog-posts mb-30">
+                            <h5>Latest Posts</h5>
+                            <!-- Single Latest Blog Post -->
+                            <div class="single-latest-blog-post d-flex mb-30">
+                                <div class="latest-blog-post-thumb">
+                                    <img src="/static/blog/img/blog-img/lb-1.jpg" alt="">
+                                </div>
+                                <div class="latest-blog-post-content">
+                                    <a href="#" class="post-title">
+                                        <h6>New Courses for you</h6>
+                                    </a>
+                                    <a href="#" class="post-date">March 18, 2018</a>
+                                </div>
+                            </div>
+                            <!-- Single Latest Blog Post -->
+                            <div class="single-latest-blog-post d-flex mb-30">
+                                <div class="latest-blog-post-thumb">
+                                    <img src="/static/blog/img/blog-img/lb-2.jpg" alt="">
+                                </div>
+                                <div class="latest-blog-post-content">
+                                    <a href="#" class="post-title">
+                                        <h6>A great way to start</h6>
+                                    </a>
+                                    <a href="#" class="post-date">March 18, 2018</a>
+                                </div>
+                            </div>
+                            <!-- Single Latest Blog Post -->
+                            <div class="single-latest-blog-post d-flex mb-30">
+                                <div class="latest-blog-post-thumb">
+                                    <img src="/static/blog/img/blog-img/lb-3.jpg" alt="">
+                                </div>
+                                <div class="latest-blog-post-content">
+                                    <a href="#" class="post-title">
+                                        <h6>New Courses for you</h6>
+                                    </a>
+                                    <a href="#" class="post-date">March 18, 2018</a>
+                                </div>
+                            </div>
+                            <!-- Single Latest Blog Post -->
+                            <div class="single-latest-blog-post d-flex">
+                                <div class="latest-blog-post-thumb">
+                                    <img src="/static/blog/img/blog-img/lb-4.jpg" alt="">
+                                </div>
+                                <div class="latest-blog-post-content">
+                                    <a href="#" class="post-title">
+                                        <h6>Start your training</h6>
+                                    </a>
+                                    <a href="#" class="post-date">March 18, 2018</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add Widget -->
+                        <div class="add-widget">
+                            <a href="#"><img src="/static/blog/img/blog-img/add.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Blog Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+   
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="/static/blog/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/static/blog/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/static/blog/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="/static/blog/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="/static/blog/js/active.js"></script>
+    <script src="/static/layui/layui.all.js"></script>
+    <script src="/static/page/myPagination.js"></script>
+
+    
+    <!-- <script type="text/javascript" src="/static/page/bootstrap-paginator.min.js"></script> -->
+    <script>
+
+    $(function onload(){
+        var pageTotal = {$page.pageTotal}; //一共多少页
+        var pageAmount = {$page.pageAmount}; //每页多少条
+        var dataCount = {$page.dataCount};  //总共多少条数据
+        var page = {$page.page};
+        new Page({
+                    id: 'pagination',
+                    pageTotal: pageTotal, //必填,总页数
+                    pageAmount: pageAmount,  //每页多少条
+                    dataTotal: dataCount, //总共多少条数据
+                    curPage: page, //初始页码,不填默认为1
+                    pageSize: 5, //分页个数,不填默认为5
+                    showPageTotalFlag:true, //是否显示数据统计,不填默认不显示
+                    showSkipInputFlag:true, //是否支持跳转,不填默认不显示
+                    getPage: function (page) {
+                        //获取当前页数
+                        window.location.href = "?page="+page;
+                        console.log(page);
+                    }
+            })
+    });
+
+    
+
+    //时间戳转换日期
+        function changeDateFormat(sj) {
+                var now = new Date(sj*1000);
+                var   year=now.getFullYear();    
+                var   month=now.getMonth()+1;    
+                var   date=now.getDate();    
+                var   hour=now.getHours();    
+                var   minute=now.getMinutes();    
+                var   second=now.getSeconds();    
+                return   year+"-"+month+"-"+date+"   "+hour+":"+minute+":"+second;  
+        }
+       
+
+    </script>
+</body>
+
+</html>
